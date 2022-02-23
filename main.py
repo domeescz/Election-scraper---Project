@@ -18,16 +18,20 @@ list_odkazu = []
 #funkce pro zápis do CSV
 def csv_file_writer(filename):
 #----------------------------HEADER OF CSV----------------------------------
-    headers = ["code", "location", "registered", "envelopes", "valid"]
-    for i in jme:
-        headers.append(i)
+
 #----------------------------OPENING AND WRITING INTO CSV-------------------
+
     f = open(filename,'w',newline='', encoding='utf-8')
-    write = csv.writer(f,lineterminator = '\n', delimiter=',')
+    headers = ["code", "location", "registered", "envelopes", "valid"]
+    #---------write all strany to the header---------
+    for index, strana in enumerate(jme):
+        headers.append(jme[index])
+    write = csv.writer(f, delimiter=';', quotechar='"')
     write.writerow(headers)
     write.writerows(list_radku)
     print('done')
     f.close()
+
 
 #now check and delete empty rows
     df = pd.read_csv(filename, sep='\t')
@@ -73,7 +77,6 @@ soup.clear()
 tab_1 = []
 tab_2 = []
 detailni = []
-container = []
 #-----------------------------------loop for all found urls----------------------------
 for i in list_odkazu_o:
     url_1 = "https://volby.cz/pls/ps2017nss/"+i
@@ -83,7 +86,6 @@ for i in list_odkazu_o:
     table_o = soup_o.findAll('table')
     table_jmena = soup_o.find('table')
     jme=[]
-
 
 
     for tabulka in table_o:
@@ -103,9 +105,12 @@ for i in list_odkazu_o:
 
 jmena_stran = []
 #------------------------------------uloží jména kandidujících stran do jednoho listu---------------
-for i in tab_2:
-        for a in i:
-            jmena_stran.append(a)
+jme=[]
+for cell in soup_o.findAll('td',{'class':'overflow_name'}):
+        text = cell.get_text()
+        jme.append(text)
+print(jme)
+
 #------------------------------------vytáhne data z první tabulky-----------------------------------
 prvni_tabulka = tab_1[::3]
 new_tab = []
@@ -165,9 +170,4 @@ for i, mesto in enumerate(list_radku_f):
         if '\xa0' in a:
             list_radku_f[i][temp_index] = a.replace(u'\xa0',u'')
 
-jme=[]
-for cell in soup_o.findAll('td',{'class':'overflow_name'}):
-        text = cell.get_text()
-        jme.append(text)
-print(jme)
 csv_file_writer('ahojda10.csv')
