@@ -1,5 +1,5 @@
 <H2> Popis projektu </H2>
-Tento projekt slouží k exportu výsledků parlamentních voleb za územní celky v jednotlivých volebních obdobích.
+Tento projekt slouží k exportu výsledků parlamentních voleb za územní celky v daném volebním období.
 
 <H2>Instalace knihoven</H2>
 Pro zjištění všech knihoven, které jsou v kódu použity, použijte soubor requirements.txt
