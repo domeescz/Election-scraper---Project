@@ -8,7 +8,9 @@ Instalace v novém virtuálním prostředí může vypadat například takhle:<b
 $ pip3 install -r requirements.txt</pre>
 
 <h2>Spuštění programu</h2>
-Pro spuštění programu do příkazového řádku je nutné zadat 2 argumenty: URL adresu dané oblasti a název *.CSV souboru.
-<h3>Vzorový příklad</h3>
-Spuštění programu může vypadat takhle (exportuji výsledky pro břeclavský okres):<br>
+Pro spuštění programu do příkazového řádku je nutné zadat 2 argumenty: URL adresu daného okresu a název *.CSV souboru.
+<h2>Vzorový příklad</h2>
+<br>Pro daný příklad byly použity územní celky okresu Břeclav (link - https://volby.cz/pls/ps2017nss/ps32?xjazyk=CZ&xkraj=11&xnumnuts=6204).<br>
+<br>
+Spuštění programu může vypadat takhle:<br>
 <pre>py main.py "https://volby.cz/pls/ps2017nss/ps32?xjazyk=CZ&xkraj=11&xnumnuts=6204" "vysledky_voleb_breclavsko.csv"</pre>
